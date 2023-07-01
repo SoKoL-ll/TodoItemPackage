@@ -16,13 +16,13 @@ public enum Importance: String {
 let separatorForCSV = ","
 
 public struct TodoItem {
-    let id: String
-    let text: String
-    let importance: Importance
-    let deadline: Date?
-    let isDone: Bool
-    let creationDate: Date
-    let modifiedDate: Date?
+    public let id: String
+    public let text: String
+    public let importance: Importance
+    public let deadline: Date?
+    public let isDone: Bool
+    public let creationDate: Date
+    public let modifiedDate: Date?
     
     public init(id: String = UUID().uuidString, text: String, importance: Importance, deadline: Date? = nil, isDone: Bool, creationDate: Date, modifiedDate: Date? = nil) {
         self.id = id
