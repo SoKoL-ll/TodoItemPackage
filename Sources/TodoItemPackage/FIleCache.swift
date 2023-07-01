@@ -4,7 +4,7 @@ import Foundation
 public class FileCache {
     let headOfCSVFile = "id,text,importance,deadline,isDone,creationDate,modifiedDate\n"
     
-    private(set) var todoItems = [String: TodoItem]()
+    public private(set) var todoItems = [String: TodoItem]()
     
     public init() {}
     
