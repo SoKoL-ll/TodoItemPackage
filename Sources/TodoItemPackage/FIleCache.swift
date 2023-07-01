@@ -6,6 +6,8 @@ public class FileCache {
     
     private(set) var todoItems = [String: TodoItem]()
     
+    public init() {}
+    
     public func appendNewItem(item: TodoItem) {
         todoItems[item.id] = item
     }
