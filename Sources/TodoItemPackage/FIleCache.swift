@@ -1,20 +1,20 @@
 import Foundation
 
 @available(iOS 16.0, *)
-class FileCache {
+public class FileCache {
     let headOfCSVFile = "id,text,importance,deadline,isDone,creationDate,modifiedDate\n"
     
     private(set) var todoItems = [String: TodoItem]()
     
-    func appendNewItem(item: TodoItem) {
+    public func appendNewItem(item: TodoItem) {
         todoItems[item.id] = item
     }
     
-    func removeItem(id: String) -> TodoItem? {
+    public func removeItem(id: String) -> TodoItem? {
         todoItems.removeValue(forKey: id)
     }
     
-    func saveTodoItemsToJsonFile(file: String) {
+    public func saveTodoItemsToJsonFile(file: String) {
         do {
             let pathForFile = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appending(path: file)
             var items = [[String: Any]]()
@@ -33,7 +33,7 @@ class FileCache {
         }
     }
     
-    func loadTodoItemsFromJsonFile(file: String) {
+    public func loadTodoItemsFromJsonFile(file: String) {
         do {
             let pathForFile = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appending(path: file)
             let jsonData = try Data(contentsOf: pathForFile)
@@ -55,7 +55,7 @@ class FileCache {
         }
     }
     
-    func saveTodoItemsToCSVFile(file: String) {
+    public func saveTodoItemsToCSVFile(file: String) {
         do {
             let pathForFile = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appending(path: file)
             var items = headOfCSVFile
@@ -71,7 +71,7 @@ class FileCache {
         }
     }
     
-    func loadTodoItemsFromCSVFile(file: String) {
+    public func loadTodoItemsFromCSVFile(file: String) {
         do {
             let pathForFile = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appending(path: file)
             let csv = try String(contentsOf: pathForFile, encoding: .utf8)

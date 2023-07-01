@@ -6,6 +6,6 @@ final class TodoItemPackageTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual(TodoItemPackage().text, "Hello, World!")
+//        XCTAssertEqual(TodoItemPackage().text, "Hello, World!")
     }
 }

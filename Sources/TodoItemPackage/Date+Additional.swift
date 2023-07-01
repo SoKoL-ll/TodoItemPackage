@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Date {
+public extension Date {
     enum DateFormat: String {
         case simpleFormat = "dd.MM.yyyy"
         var format: String {

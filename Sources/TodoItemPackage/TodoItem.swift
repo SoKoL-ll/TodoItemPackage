@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Importance: String {
+public enum Importance: String {
     case unimportant
     case important
     case common
@@ -15,7 +15,7 @@ enum Importance: String {
 
 let separatorForCSV = ","
 
-struct TodoItem {
+public struct TodoItem {
     let id: String
     let text: String
     let importance: Importance
@@ -24,7 +24,7 @@ struct TodoItem {
     let creationDate: Date
     let modifiedDate: Date?
     
-    init(id: String = UUID().uuidString, text: String, importance: Importance, deadline: Date? = nil, isDone: Bool, creationDate: Date, modifiedDate: Date? = nil) {
+    public init(id: String = UUID().uuidString, text: String, importance: Importance, deadline: Date? = nil, isDone: Bool, creationDate: Date, modifiedDate: Date? = nil) {
         self.id = id
         self.text = text
         self.importance = importance
@@ -36,7 +36,7 @@ struct TodoItem {
 }
 
 extension TodoItem {
-    static func parse(json: Any) -> TodoItem? {
+    public static func parse(json: Any) -> TodoItem? {
         guard let json = json as? [String: Any] else { return nil }
         
         guard
@@ -56,7 +56,7 @@ extension TodoItem {
         return TodoItem(id: id, text: text, importance: imortance, deadline: deadline, isDone: isDone, creationDate: creationDate, modifiedDate: modifiedDate)
     }
     
-    var json: Any {
+    public var json: Any {
         var data = [String: Any]()
         
         data["id"] = self.id
@@ -81,7 +81,7 @@ extension TodoItem {
 }
 
 extension TodoItem {
-    static func parse(csv: String) -> TodoItem? {
+    public static func parse(csv: String) -> TodoItem? {
         let elements = csv.components(separatedBy: separatorForCSV)
         
         if elements.count < 6 {
@@ -108,7 +108,7 @@ extension TodoItem {
         return TodoItem(id: id, text: text, importance: importance, deadline: deadline, isDone: isDone, creationDate: creationDate, modifiedDate: modifiedDate)
     }
     
-    var csv: String {
+    public var csv: String {
         var csvToString = String()
         
         csvToString += "\(id)\(separatorForCSV)\(text)\(separatorForCSV)"
