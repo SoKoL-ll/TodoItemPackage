@@ -50,7 +50,7 @@ public class FileCache {
                 }
             }
             
-            print(todoItems)
+            print(pathForFile)
             
         } catch {
             print("Error when loading tasks from a JSON file \(error)")
