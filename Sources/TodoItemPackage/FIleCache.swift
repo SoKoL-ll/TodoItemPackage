@@ -37,7 +37,7 @@ public class FileCache {
     
     public func loadTodoItemsFromJsonFile(file: String) {
         do {
-            let pathForFile = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appending(path: file)
+            let pathForFile = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask).first!.appending(path: file)
             let jsonData = try Data(contentsOf: pathForFile)
             
             print(jsonData)
@@ -59,7 +59,7 @@ public class FileCache {
     
     public func saveTodoItemsToCSVFile(file: String) {
         do {
-            let pathForFile = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appending(path: file)
+            let pathForFile = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask).first!.appending(path: file)
             var items = headOfCSVFile
             
             for todoItem in todoItems {
