@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum Importance: String, CodingKey {
+public enum Importance: String, Codable {
     case low
     case important
     case basic
