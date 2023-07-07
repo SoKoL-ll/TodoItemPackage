@@ -8,9 +8,9 @@
 import Foundation
 
 public enum Importance: String, CodingKey {
-    case unimportant
+    case low
     case important
-    case common
+    case basic
 }
 
 let separatorForCSV = ","
@@ -48,7 +48,7 @@ extension TodoItem {
         }
         
         let creationDate = Date.toDate(from: stringCreationDate) ?? Date()
-        let imortance = (json["importance"] as? String).flatMap(Importance.init(rawValue:)) ?? .common
+        let imortance = (json["importance"] as? String).flatMap(Importance.init(rawValue:)) ?? .basic
         let deadline = (json["deadline"] as? String).flatMap { stringDate in Date.toDate(from: stringDate) }
         let isDone = (json["isDone"] as? Bool) ?? false
         let modifiedDate = (json["modifiedDate"] as? String).flatMap{ stringDate in Date.toDate(from: stringDate) }
@@ -64,7 +64,7 @@ extension TodoItem {
         data["isDone"] = self.isDone
         data["creationDate"] = self.creationDate.toString()
         
-        if self.importance != .common {
+        if self.importance != .basic {
             data["importance"] = self.importance.rawValue
         }
         
@@ -90,14 +90,14 @@ extension TodoItem {
         
         let id = elements[0]
         let text = elements[1]
-        var importance: Importance = .common
+        var importance: Importance = .basic
         var deadline: Date?
         var isDone: Bool
         var creationDate: Date
         var modifiedDate: Date?
         
-        if elements[2] == Importance.unimportant.rawValue || elements[2] == Importance.important.rawValue {
-            importance = Importance.init(rawValue: elements[2]) ?? .common
+        if elements[2] == Importance.low.rawValue || elements[2] == Importance.important.rawValue {
+            importance = Importance.init(rawValue: elements[2]) ?? .basic
         }
         
         deadline = elements[3] != "" ? Date.toDate(from: elements[3]) : nil
@@ -112,7 +112,7 @@ extension TodoItem {
         var csvToString = String()
         
         csvToString += "\(id)\(separatorForCSV)\(text)\(separatorForCSV)"
-        csvToString += importance == .common ? separatorForCSV : "\(importance.rawValue)\(separatorForCSV)"
+        csvToString += importance == .basic ? separatorForCSV : "\(importance.rawValue)\(separatorForCSV)"
         
         if let deadline = deadline {
             csvToString += "\(deadline.toString())\(separatorForCSV)"
